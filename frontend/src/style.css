@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* CAPA BASE: Definimos el ADN visual del sistema.
+   Usamos @layer base para que Tailwind pueda sobrescribir estos estilos 
+   cuando usemos clases utilitarias en el HTML.
+*/
+@layer base {
+  :root {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    
+    color-scheme: light;
+    color: #1f2937;
+    
+    /* Variables de Marca */
+    --primary: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #dbeafe;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #0ea5e9;
+    --neutral-50: #f9fafb;
+    --neutral-100: #f3f4f6;
+    --neutral-200: #e5e7eb;
+    --neutral-300: #d1d5db;
+    --neutral-400: #9ca3af;
+    --neutral-500: #6b7280;
+    --neutral-600: #4b5563;
+    --neutral-700: #374151;
+    --neutral-800: #1f2937;
+    --neutral-900: #111827;
+  }
+
+  * {
+    border-color: var(--neutral-200);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    /* bg-transparent es clave para que no tape el fondo oscuro del Login */
+    @apply bg-transparent text-slate-900 antialiased;
+    min-height: 100vh;
+  }
+
+  /* Reset de Tipografía sin forzar márgenes */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-slate-900 leading-tight;
+    margin: 0;
+  }
+
+  /* Normalización de interactivos */
+  a {
+    @apply transition-colors duration-200;
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  input, button, select, textarea {
+    @apply transition-all duration-200;
+    font-family: inherit;
+  }
+}
+
+/* CAPA DE COMPONENTES: Clases personalizadas reutilizables.
+   Ideal para elementos del Dashboard de profesoras.
+*/
+@layer components {
+  /* Cards Profesionales */
+  .card-sys {
+    @apply bg-white rounded-xl shadow-sm border border-slate-100 p-6 transition-all duration-300;
+  }
+  .card-sys:hover {
+    @apply shadow-md -translate-y-1;
+  }
+
+  /* Badges para estados de notas/asistencia */
+  .badge-sys {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  .badge-success { @apply bg-emerald-100 text-emerald-700; }
+  .badge-danger { @apply bg-rose-100 text-rose-700; }
+
+  /* Inputs estandarizados para formularios extensos */
+  .input-sys {
+    @apply w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500;
+  }
+
+  /* Gradientes de marca */
+  .gradient-docente {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+}
+
+/* SCROLLBARS: Fuera de capas para asegurar soporte global.
+*/
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-50;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400;
+}
